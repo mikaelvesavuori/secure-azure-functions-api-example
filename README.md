@@ -1,4 +1,4 @@
-# Azure: API Management instance with Serverless Framework
+# Example of a secured API Management instance fronting Azure Functions
 
 Basic demo of a minimally secured API with a single Azure Function behind it. The stack is Serverless Framework, Typescript, Babel and Webpack.
 
