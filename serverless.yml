@@ -1,0 +1,61 @@
+service: secure-azure-functions-api
+
+provider:
+  name: azure
+  runtime: nodejs12
+  region: ${opt:region, 'North Europe'}
+  stage: ${opt:stage, 'dev'}
+  # subscriptionId: 0000000000000
+  apim:
+    apis:
+      - name: secure-azure-functions-api
+        subscriptionRequired: true
+        displayName: Secured API
+        description: Demo secured REST API
+        protocols:
+          - https
+        path: api
+        authorization: none
+    backends:
+      - name: secure-azure-functions-backend
+        url: api/securedFunction # Map this to the function (aka "backend")
+    cors:
+      allowCredentials: false
+      allowedOrigins:
+        - '*'
+      allowedMethods:
+        - GET
+      allowedHeaders:
+        - '*'
+      exposeHeaders:
+        - '*'
+
+plugins:
+  - serverless-azure-functions
+  - serverless-webpack
+
+package:
+  exclude:
+    - local.settings.json
+    - .vscode/**
+
+functions:
+  securedFunction:
+    handler: src/index.securedFunction
+    apim:
+      api: secure-azure-functions-api
+      backend: secure-azure-functions-backend
+      operations:
+        - method: get
+          urlTemplate: / # This will be the actual endpoint, prefixed normally by "api"; so something like: https://sls-neur-dev-4abf36-apim.azure-api.net/api/
+          displayName: securedFunction
+    events:
+      - http: true
+        x-azure-settings:
+          name: req
+          methods: ['GET']
+          authLevel: function
+      - http: true
+        x-azure-settings:
+          name: res
+          direction: out
