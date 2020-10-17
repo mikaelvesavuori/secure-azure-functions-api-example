@@ -1,3 +1,4 @@
+# Docs at https://www.serverless.com/framework/docs/providers/azure/guide/serverless.yml/
 service: secure-azure-functions-api
 
 provider:
@@ -5,7 +6,6 @@ provider:
   runtime: nodejs12
   region: ${opt:region, 'North Europe'}
   stage: ${opt:stage, 'dev'}
-  # subscriptionId: 0000000000000
   apim:
     apis:
       - name: secure-azure-functions-api
@@ -46,8 +46,9 @@ functions:
       api: secure-azure-functions-api
       backend: secure-azure-functions-backend
       operations:
-        - method: get
-          urlTemplate: / # This will be the actual endpoint, prefixed normally by "api"; so something like: https://sls-neur-dev-4abf36-apim.azure-api.net/api/
+        - method: GET
+          # This will be the actual endpoint, prefixed normally by "api", so the URL will be something like: https://sls-neur-dev-4abf36-apim.azure-api.net/api/
+          urlTemplate: /
           displayName: securedFunction
     events:
       - http: true
@@ -57,5 +58,5 @@ functions:
           authLevel: function
       - http: true
         x-azure-settings:
-          name: res
+          name: $return
           direction: out

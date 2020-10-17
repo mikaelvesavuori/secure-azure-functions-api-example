@@ -5,9 +5,9 @@ import { Context, HttpRequest } from '@azure/functions';
  * @param {Object} context - Context object
  * @param {Object} req - Incoming HTTP request
  */
-export async function securedFunction(context: Context, req: HttpRequest): Promise<void> {
-  context.res = {
+export async function securedFunction(context: Context, req: HttpRequest): Promise<any> {
+  return {
     status: 200,
     body: 'Heya!'
   };
-}
+};

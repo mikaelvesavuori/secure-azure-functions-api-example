@@ -10,12 +10,11 @@ module.exports = {
   target: 'node',
   output: {
     libraryTarget: 'commonjs2',
-    library: 'index',
     path: path.resolve(__dirname, '.webpack'),
     filename: '[name].js'
   },
   optimization: {
-    minimize: false // This has to be FALSE, or Blob Storage library will break
+    minimize: false
   },
   resolve: {
     extensions: ['.mjs', '.js', '.ts']

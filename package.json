@@ -1,10 +1,11 @@
 {
   "name": "secure-azure-functions-api-example",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Demo for a secured API Management instance fronting an Azure Function",
   "main": "index.js",
   "scripts": {
-    "start": "sls offline"
+    "start": "sls offline",
+    "deploy": "sls deploy --resourceGroup SECURE_API"
   },
   "keywords": [
     "azure-functions",
@@ -19,19 +20,19 @@
     "@azure/functions": "^1.2.2"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-typescript": "^7.10.4",
-    "@babel/types": "^7.11.0",
-    "@types/node": "^14.0.27",
-    "@typescript-eslint/eslint-plugin": "^3.7.1",
-    "@typescript-eslint/parser": "^3.7.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@babel/types": "^7.12.1",
+    "@types/node": "^14.11.10",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "babel-loader": "^8.1.0",
-    "prettier": "^2.0.5",
-    "serverless-azure-functions": "^2.0.13",
-    "serverless-webpack": "^5.3.3",
-    "ts-loader": "^8.0.2",
-    "typescript": "^3.9.7",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "prettier": "^2.1.2",
+    "serverless-azure-functions": "^2.1.0",
+    "serverless-webpack": "^5.3.5",
+    "ts-loader": "^8.0.5",
+    "typescript": "^4.0.3",
+    "webpack": "^5.1.3",
+    "webpack-cli": "^4.0.0"
   }
 }

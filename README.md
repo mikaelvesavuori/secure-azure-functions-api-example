@@ -4,13 +4,17 @@ Basic demo of a minimally secured API with a single Azure Function behind it. Th
 
 At this stage the demo helps you:
 
-- Deploy an API with a basic function
-- [Set authorization mode](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript#configuration) to `function`
-- Require API key ("subscription") in the `Ocp-Apim-Subscription-Key` header
+- Deploy an API with a basic function (written in Typescript)
+- [Set authorization mode](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript#configuration) to `function` (no anonymous function access; must go through API)
+- Require an API key ("subscription") in the `Ocp-Apim-Subscription-Key` header
 - Rate limit the API
 - Set CORS
 - Strip headers
 - Change response URL
+
+Note that rate limiting does not work on Consumption plans.
+
+**It is highly recommended that you configure and run the "postfix" security improvement script!** While it's technically possible to run ARM templates together with Serverless Framework, I personally find the templates too wordy and unintuitive. Instead, just run the simple script `postfix-security.sh` to tighten security on the deployment bucket and the function app. Doing so, you will remove public bucket access, force HTTP2 and HTTPS transfers, disable FTP and force the use of TLS 1.2 as the minimum version. There's also an additional adjustment that turns on 64-bit workers.
 
 ## Installation
 
